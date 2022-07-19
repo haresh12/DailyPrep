@@ -95,3 +95,8 @@ strings.slice(2,0,'middle');
    into that new array. But js handle all this stuff in background and we don't have to worry much about it but
    it always good to know about stuff.  
 */
+
+/*
+  Common interview tips : Any question releated to string should be treated as array question because
+  at the end string is array of character.
+*/

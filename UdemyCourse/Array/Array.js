@@ -73,6 +73,24 @@ class MyArray {
     this.data[index] = item;
     return ++this.length
   }
+
+  delete(index) {
+    if(index>= this.length) return -1;
+    const item = this.data[index]
+    this.shiftItem(index);
+   // As we shifted item so because of logic now last item will be undefined so we need to remove that and 
+   // then manage then length
+   delete this.data[this.length-1];
+   this.length--;
+   return item;
+  }
+
+  //Try to seprate as much as code you can do with like this
+  shiftItem(index){
+    for(let i = index ; i < this.length ; i++){
+        this.data[i] = this.data[i+1]
+    }
+  }
 }
 
 const array = new MyArray();
@@ -108,14 +126,22 @@ const array = new MyArray();
 // console.log(array);
 // console.log(array.push(80));
 // console.log(array);
+array.push(1)
+array.push(2)
+array.push(3)
+array.push(4)
+array.push(5)
+array.push(6)
+array.push(7)
+array.push(8)
+array.push(9)
 array.push(10)
-array.push(20)
-array.push(30)
-array.push(40)
-array.push(50)
-array.push(60)
-
-array.insert(2,'a')
-
+array.delete(1)
+array.delete(3)
+array.delete(5)
+array.delete(2)
+array.delete(4)
+array.delete(90)
 console.log(array)
+
 
