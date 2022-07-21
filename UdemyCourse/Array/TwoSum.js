@@ -39,4 +39,38 @@ function twoSumLeetCode01(nums , target){
   }
  }
 }
-console.log(twoSumLeetCode01([2,7,11,15], 18))
+// console.log(twoSumLeetCode01([2,7,11,15], 18))
+
+// IN THIS WE HAVE TO PRINT THE PAIR WHICH MATCH WITH TARGET.
+// Time complexity should be nlogn
+// if you are printing  pair 2 3 then you should not print 3 2
+// O(N)2 solution first
+function printTwoSumPair(nums, target){
+  for(let i = 0 ; i < nums.length ; i++){
+    for(let j = i+1 ; j < nums.length ;j++){
+       if(nums[i] + nums[j] === target){
+         console.log(`${nums[i] + ',' + nums[j]}`)
+       }
+    }
+  }
+}
+//nlogn solution
+function printTwoSumPair2(nums, target){
+ // Step : 1 sort the array
+nums.sort(); // using default method for now
+ let li = 0; // left index
+ let ri = nums.length -1; // right index
+
+ while(li < ri){
+   if(nums[li] + nums[ri] < target){
+      li++;
+   }else if(nums[li] + nums[ri] > target){
+     ri--;
+   }else{
+      console.log(nums[li],nums[ri]);
+      li++;
+      ri--;
+   }
+ }
+}
+console.log("printTwoSumPair2",printTwoSumPair2([2,9,6,1,7,3,4],10))

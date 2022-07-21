@@ -2,7 +2,7 @@
 // Incredible question great explanation at 
 //https://leetcode.com/problems/maximum-subarray/discuss/791430/Javascript-Solution%3A53-(speedgreater95)
 //https://www.youtube.com/watch?v=VMtyGnNcdPw
-
+//Kadane's Algorithm for Maximum Sum Subarray
 function maxSubArraryLeetcode53(nums){
  if(nums.length === 0) return 0;
  let result = Number.MIN_SAFE_INTEGER; // lowest number
@@ -17,4 +17,23 @@ function maxSubArraryLeetcode53(nums){
  return result;
 }
 
-console.log(maxSubArraryLeetcode53([1,2,3,-2,8,-18]));
+// console.log(maxSubArraryLeetcode53([2,8,-16,7,4]));
+// This is much more understandable solution in terms of code 
+function maxSubArraySolution2(nums){
+ if(nums.length === 0) return
+ let result =  Number.MIN_SAFE_INTEGER;
+ let sum = 0;
+ for(let i = 0 ; i < nums.length ; i++){ 
+  if(sum + nums[i] < nums[i]){
+    sum= nums[i];
+  }else{
+    sum+=nums[i]
+  }
+    if(sum > result){
+      result = sum
+    }
+
+ }
+ return result;
+}
+console.log(maxSubArraySolution2([2,8,-16,7,4]));
