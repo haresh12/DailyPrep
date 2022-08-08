@@ -63,11 +63,6 @@ class QueueFromStack {
    isEmpty(){
     return this.stackOne.isEmpty();
    }
-
-   size(){
-    return this.stackOne.size() + this.stackTwo.size();
-   }
-  
 }
 
 const queue = new QueueFromStack();
