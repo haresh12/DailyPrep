@@ -102,6 +102,30 @@ class BST {
     }
     return null;
   }
+
+  // FOR BINERY SEARCH TREE BFS IS NOT THAT HARD JUST UNDERSTAND THE CONPECT WELL
+  bfs(){
+    let currentNode = this.root
+    let queue = [];
+    let list = [];
+    queue.push(currentNode)
+    while(queue.length > 0){
+      currentNode = queue.shift();
+      list.push(currentNode.value);
+      if(currentNode.left){
+        queue.push(currentNode.left);
+      }
+      if(currentNode.right){
+        queue.push(currentNode.right);
+      }
+    }
+    return list;
+  }
+
+  // must need to done from pepcoding preorder - inorder - post order
+  dfs(){
+
+  }
 }
 
 const bst = new BST();
@@ -109,4 +133,4 @@ bst.insert(10);
 bst.insert(5);
 bst.insert(15);
 bst.insert(1);
-console.log(bst.lookup(1));
+console.log(bst.bfs());
