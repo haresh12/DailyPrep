@@ -42,27 +42,32 @@ function partioningArray(arr,pivot){
  }
  return arr;
 }
-// console.log(partioningArray([8,5,2,1,6,4,21,11,9,19],1))
+// console.log(partioningArray([8,5,2,1,6,4,21,11,9,19],11))
 
 
 // lets do one more example of that where you will have to shift all 0s to left;
 // whatever you need to left side always do swap for that and for right side i++ bas.
-function shiftZeros(arr){
+function shiftZeros(arr,pivot){
   let i = 0;
   let j = 0;
-
-  while(i < arr.length){
-    if(arr[i] === 1){
-      let temp = arr[i];
-      arr[i] = arr[j];
-      arr[j]= temp;
+  while (i < arr.length) {
+    if (arr[i] > pivot)
+    {
+      i++;
+    }
+    else
+    {
+      swap(arr, i, j);
       i++;
       j++;
-    }else{
-        i++;
     }
   }
- return arr; 
+  return arr
+}
+function swap(arr,i,j){
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
 }
 
-console.log(shiftZeros([4,1,0,4,5,0,1,2,3,5,0]))
+console.log(shiftZeros([7,9,4,8,5,3,6,2,1],5))

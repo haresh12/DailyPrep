@@ -1,3 +1,8 @@
+/** 
+ *  BIG NOTE RECURSION WITHOUT DP IS IMPOSSIBLE BECAUSE MOST OF PROBLEM OF RECURSION DOES NOT WORK
+ *  FOR LARGE OUTPUT
+ */
+
 /*
   Recursion is simple word when function calls itself. It is very usefull when we have repetive task
   to do and one more thing about recursion is hard to image whats going go happen next because see
