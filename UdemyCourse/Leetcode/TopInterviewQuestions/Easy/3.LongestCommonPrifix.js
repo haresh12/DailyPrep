@@ -81,3 +81,4 @@ function getCommonPrefix(str1,str2){
 let strs  = ["flower","flow","flight"]
 const result = lcp(strs)
 console.log(result)
+

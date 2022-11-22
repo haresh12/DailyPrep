@@ -24,7 +24,7 @@
 
   SO IN SIMPLE WORD GRAPH CONTAIN MAINLY THREE 3 THINGS VERTICES , EDGES AND WEIGHT.
 
-  Also graph directed and undirected but right now we will focus only on undirected graph.
+  Also graph can be directed and undirected but right now we will focus only on undirected graph.
   (ONLY DIFFERENCE IS THAT IN DIRECTED GRAPH THERE MIGHT BE POSSIBLITY THAT WE CAN GO FROM
   AHEMDABAD TO PUNE BUT THERE WAY FROM PUNE TO AHEMDABAD : (There is no coming back))
 

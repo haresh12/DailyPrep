@@ -313,7 +313,7 @@ function isGraphConnected(){
  
  // ALWAYS CREATE THIS WAY 
 const arr2d = [...Array(tdArray.length)].map(() => Array(tdArray[0].length).fill(false))
-// NOW THIS WAY
+// NOT THIS WAY
 // let tdVisited = new Array(tdArray.length).fill(new Array(tdArray[0].length).fill(false)); //  NEVER DO THIS
 
  /*
@@ -422,13 +422,13 @@ visited = new Array(7).fill(false)
    3. HOW CAN WE CHECK THIS KIND OF THING SIMPLE YARR LAST VALE KE neighbour CHECK KRE AND IF USKE 
       NEIGHBOUR ME SOURCE HE MEANS WE HAVE DIRECT CONNECTION BETWEEN THEN
 */
-function hamailtainPathAndCycle(graph,src,visited,pathSoFar,orignalSrc){
+function hamailtainPathAndCycle(graph,src,visited,pathSoFar){
 if(pathSoFar.length === vertices){
  let lastSrc = pathSoFar[pathSoFar.length-1];
  let isCycle = false;
  let edges = graph[lastSrc]
  for(let i = 0 ; i < edges.length ; i++){
-  if(edges[i].nbr === orignalSrc){
+  if(edges[i].nbr == pathSoFar[0]){
     isCycle= true; // becasue orignal src and last verice has direct connection
   }
  }
@@ -443,12 +443,12 @@ visited[src] = true;
   let edges = graph[src];
   for(let i = 0 ; i < edges.length ; i++){
      if(visited[edges[i].nbr] === false){
-       hamailtainPathAndCycle(graph,edges[i].nbr,visited,pathSoFar+edges[i].nbr,orignalSrc);
+       hamailtainPathAndCycle(graph,edges[i].nbr,visited,pathSoFar+edges[i].nbr);
      }
   }
   visited[src]=false;
 }
-hamailtainPathAndCycle(graph,0,visited,0+'',0);
+hamailtainPathAndCycle(graph,0,visited,0);
 
 
 /* 
@@ -456,7 +456,7 @@ TILL NOW ALL THE QUESTION WAS RELEATED DFS WITH GRAPHS LIKE GOING DEEP IN TO REC
 NOW WE WILL DO BFS IN GRAPH.
 
 For BFS IN GRAPH REMEMBER THIS ALOGORITHM : Remove , Mark* , Work , Add Nbr*.
-Where * is for if it is already marked then just continue means go from next Queue item and perfrom RMWA steps.
+Where * is for if it is already marked then just continue means go to next Queue item and perfrom RMWA steps.
 Also same as other problem here also add nbr only if the are not added.
 */
 
@@ -484,7 +484,7 @@ function bfs(graph,src,visited){
     continue;
   }
 
-  // BHAI AGAR VISITED NO HA NA UPER KE STEP ME TO VISITED KRNA BE PDTA HAI USKE BAAD VRNA ENDLESS LOOP ME CHLE JAOGE LIFE KI TRHA
+  // BHAI AGAR VISITED NA HA NA UPER KE STEP ME TO VISITED KRNA BE PDTA HAI USKE BAAD VRNA ENDLESS LOOP ME CHLE JAOGE LIFE KI TRHA
   visited[remove.vertice] = true
 
   // Do work (Here only print current path so far)
@@ -515,9 +515,14 @@ console.log('BFS in graph ',bfs(graph,2,visited))
    are not always connected. SO THATS WHY ONLY DIFFERANCE BETWEEN ABOVE QUESTION AND THIS ONE IS HERE WE WILL GIVE CHANCE TO EACH VERTICE
    ONLY TO SOURCE.
 
+   ALWAYS WHENEVER IT COMES TO GRAPH QUESTION THING ABOUT GIVING CHANCE TO ALL THE VERTICES BECAUSE
+   IT MAY BE POSSIBLE THAT WE GET GRAPH WHERE ALL EDGES ARE NOT CONNECTED ACTUALLY.
+
 */
 visited = new Array(vertices).fill(false);
 function graphCyclic(graph,visited){
+
+  //This is importent giving chance to all the vertices and as soon as we get single isCyclic graph then just return
   for(let v = 0 ; v < vertices ; v++){
     if(visited[v] === false){
       const isCycle =  isGraphIsCyclic(graph,v,visited);
@@ -681,7 +686,7 @@ class PathPair {
 }
 
 visited = new Array(vertices).fill(false);
-function findShortesPathWithDijkstraAlgo(graph,src,des,visited){
+function findShortesPathWithDijkstraAlgo(graph,src,visited){
 let queue = [];
 let pair = new PathPair(src,src+'', 0);
 queue.push(pair);
@@ -813,7 +818,8 @@ function drawDirectedGraphTree(graph,src,visited,stack){
     drawDirectedGraphTree(graph,edge.nbr,visited,stack);
   }
  });
- stack.push(src)
+ stack.push(src); // UNDERSTEND WHY STACK HERE WHY NOT PRINT IN PRE OR POST ORDER DIRECTLY
+ // ONCE YOU UNDERSTAND STACK THINK YOU UNDERSTAND THIS QUESTION LIKE KING
 }
 
 console.log('Topology Search ',complieFileOrderWithToplogySearch(directeGraph,dvisieted))

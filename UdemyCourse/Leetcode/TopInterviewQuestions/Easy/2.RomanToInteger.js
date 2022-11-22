@@ -20,7 +20,7 @@ C can be placed before D (500) and M (1000) to make 400 and 900.
 Given a roman numeral, convert it to an integer. (THIS IS WHAT NEED TO DONE)
 
 Understand this one line : In roman numbers if you have given CM where value of C is
-100 which is less then value of M which is 1000 then you substract if from M and ans
+100 which is less then value of M which is 1000 then you substract it from M and ans
 of CM would be 900.
 
 Approch First comes in mind : Loop from back and see if value at index -1 is less then
