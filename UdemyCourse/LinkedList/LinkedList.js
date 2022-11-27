@@ -1,3 +1,16 @@
+/*
+  LINKED LIST : https://code.tutsplus.com/articles/the-best-way-to-deep-copy-an-object-in-javascript--cms-39655
+  IF YOU DON'T UNDERSTAND CONECT OF BY AND BY REFRENCE DON'T START WITH LINKED LIST
+
+  UNDERTAND WHY WE HAVE TO WRITE THIS ONE LINE TO COPY OBJECT
+  let clone = JSON.parse(JSON.stringify(user))
+  WHY JUST ASSIGNING THE REFERENCE DID NOT WORKED BEACEUSE BRO BOTH HAVE SAME REFRENCE AND
+  AS SOON AS YOU REVERSE LIST EVERY THING CHANGE IS YOU HEAD BECAUSE AFTER REVERSE YOUR
+  ORIGNAL HEAD  CONNECTE WITH NULL.
+
+  MUST MUST UNDERSTAND THIS
+*/
+
 // BIG NOTE : NEVER CHECK C0NDITION LIKE THIS : IF(VALUE) IF(!VALUE) BECAUSE IF VALUE IS 0 THEN
 // INSIDE CONDITION JAVASCRIPT TAKES AS FALSE AND IF 1 THEN JS WILL CONSIDER AS TRUE
 class Node {
@@ -32,6 +45,45 @@ class LinkedList {
   return this.length;
 }
 
+  isPalindrome(head){
+    let temp = JSON.parse(JSON.stringify(head));
+    let rev = this.reverse(head)
+    console.log(temp,rev)
+  }
+  reverse(head){
+    let current = head;
+    let prev = null;
+    while(current !== null){
+      let temp = current.next;
+      current.next = prev;
+      prev = current;
+      current = temp;
+    }
+    return prev;
+  }
+ getNodeAt(node,pos){
+  let nodeAtPos = node;
+  while(pos !== 0 && nodeAtPos !== null){
+      console.log('position',pos)
+      nodeAtPos = nodeAtPos.next;
+    pos--;
+  }
+  return nodeAtPos?.value;
+ }
+ // Brut forst solution because for this we need to apply specific algorithem
+ // Also this solution won't work when have same value in linked list like [2,2,2,2]
+ isCycle(node){
+  let map = {};
+  let temp = node;
+  while(temp !== null){
+    if(temp.value in map){
+      return true;
+    }
+    map[temp.value] = true;
+    temp = temp.next;
+  }
+  return false
+  }
 // DRAW AND DO AS MAY AS TIME YOU CAN 
 // https://www.youtube.com/watch?v=71NqKy7287g
 reverse(){
@@ -182,50 +234,66 @@ const head = addTwoNumbersLeetCode2(l1,l2);
 // console.log(head)
 
 
-// Remove Duplicates from Storted List
-const l4  = new LinkedList(1);
-l4.append(1);
-l4.append(2);
-l4.append(3);
-l4.append(3);
-l4.append(4);
-l4.append(4);
-function removeSortedList(){
- let map = {}
- let head = l4.head;
- let index = 0;
- while(head){
-   if(map[head.value]){
+// // Remove Duplicates from Storted List
+// const l4  = new LinkedList(1);
+// l4.append(1);
+// l4.append(2);
+// l4.append(3);
+// l4.append(3);
+// l4.append(4);
+// l4.append(4);
+// function removeSortedList(){
+//  let map = {}
+//  let head = l4.head;
+//  let index = 0;
+//  while(head){
+//    if(map[head.value]){
      
-   }
- }
-}
+//    }
+//  }
+// }
 
-// console.log(JSON.stringify(removeSortedList()))
+// // console.log(JSON.stringify(removeSortedList()))
 
-const linkedList = new LinkedList(1);
-linkedList.append(0)
-linkedList.append(1)
+// const linkedList = new LinkedList(1);
+// linkedList.append(0)
+// linkedList.append(11)
+// linkedList.append(2)
+// linkedList.append(3)
+// linkedList.append(4)
+// linkedList.append(5)
+// console.log('List',linkedList);
+// console.log('VALUE HERE',linkedList.isCycle(linkedList.head));
 
-// TOOK ALMOST 1 HOUR NOT THAT GOOD FOR EASY PROBLEM
-function isPalindromLinkedList(){
-let s1 = [];
-let currentHead = linkedList.head;
-let tempHead = linkedList.head;
-while(tempHead != null){
-  s1.push(tempHead.value)
-  tempHead = tempHead.next;
-}
-while(currentHead != null){
-  if(currentHead.value !== s1.pop()){
-    return false
-  }
-   currentHead = currentHead.next;
-}
-return true;
-}
 
-console.log("isPalindromLinkedList",isPalindromLinkedList())
+// // TOOK ALMOST 1 HOUR NOT THAT GOOD FOR EASY PROBLEM
+// function isPalindromLinkedList(){
+// let s1 = [];
+// let currentHead = linkedList.head;
+// let tempHead = linkedList.head;
+// while(tempHead != null){
+//   s1.push(tempHead.value)
+//   tempHead = tempHead.next;
+// }
+// while(currentHead != null){
+//   if(currentHead.value !== s1.pop()){
+//     return false
+//   }
+//    currentHead = currentHead.next;
+// }
+// return true;
+// }
+
+// console.log("isPalindromLinkedList",isPalindromLinkedList())
+
+let li = new LinkedList(1);
+li.append(1)
+li.append(2)
+li.append(1)
+
+li.isPalindrome(li.head)
+
+
 
 
 

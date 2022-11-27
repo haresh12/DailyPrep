@@ -37,16 +37,22 @@ class Node {
     this.right = right;
   }
 }
-
-// let btArr = [50,25,12,null,null,37,38,null,null,null,75,62,null,70,null,null,87,null,null]
-// let btArr = [50,25,12,null,null,37,null,null,75,62,null,null,87,null,null] // binary search tree
-let btArr = [50,25,12,null,null,null,null]; // Unbalanced tree incredible bhai
 class Pair {
   constructor(node,state){
     this.node = node;
     this.state = state;
   } 
 }
+class IPair{
+  constructor(node,state){
+   this.node = node;
+   this.state = state;
+  }
+}
+let btArr = [50,25,12,null,null,37,38,null,null,null,75,62,null,70,null,null,87,null,null]
+// let btArr = [50,25,12,null,null,37,null,null,75,62,null,null,87,null,null] // binary search tree
+// let btArr = [50,25,12,null,null,null,null]; // Unbalanced tree incredible bhai
+
 /*
    Will take tree different state here 
    So if in PAIR you get state 1 => means add next arr item as left child
@@ -101,6 +107,8 @@ function structureBinaryTree(arr){
 }
 
 const root = structureBinaryTree(btArr);
+console.log("ANS",iterative(root))
+
 // display(root)
 // console.log(size(root))
 // console.log(max(root))
@@ -576,3 +584,46 @@ let isBalanced = true;
  // THESE ARE THE ALL QUESTION WE HAVE FOR UNDERSTANDING BINARY TREE IN LEVEL ONE 
 
  // There are 12 more videos need to just watch one time
+
+ function inOrderTraversal(node,arr){
+  if(node === null){
+   return arr;
+  }
+  node.left = inOrderTraversal(node.left,arr);
+  arr.push(node.data)
+  node.right = inOrderTraversal(node.right,arr);
+ return arr;
+ }
+
+ console.log('INORDER',inOrderTraversal(root,[]))
+
+ //https://www.youtube.com/watch?v=12aMTS0L6WI&t=9s
+ function iterative(root){
+  let stack = [];
+  let pair = new IPair(root,1);
+  let inorderArr = [];
+  stack.push(pair);
+  console.log(pair)
+  while(stack.length > 0){
+    let top = stack[stack.length-1];
+     if(top.state === 1){
+     // If the top state is one means that we are seeing it first time means its in pre order
+      if(top.node.left){
+        let newPair = new IPair(top.node.left,1);
+         stack.push(newPair);
+      }
+      top.state++;
+    }else if(top.state === 2){
+      // If the top state is two means we are seeing it second time means its in in order             
+      inorderArr.push(top.node.data)
+      if(top.node.right){
+        let newPair = new IPair(top.node.right,1);
+         stack.push(newPair);
+      }
+      top.state++;
+    }else{
+        stack.pop();
+    }
+  }
+  return inorderArr;
+ }
