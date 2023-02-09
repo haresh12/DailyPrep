@@ -10,7 +10,7 @@ function longestSubstring(str) {
 
   while (right < str.length) {
     if (str[right] in map) {
-      // This is basically releated to rang like currently your window is in range of 4 to 7
+      // This is basically releated to range like currently your window is in range of 4 to 7
       // and next char which was seen previously at index 2 so we really don't need to updated left in that case because our window is already out of range.
       if (left < map[str[right]] + 1) {
         left = map[str[right]] + 1; // 2 HOURS ONLY THIS LINE
