@@ -40,7 +40,7 @@ function palindromicSubStringBruteForce(string) {
     let currString = string[i];
     for (let j = i + 1; j < string.length; j++) {
       currString += string[j];
-      const isPalindrom = palindromic(currString);
+      const isPalindrom = palindromicBF(currString);
       console.log(currString, isPalindrom);
       if (isPalindrom && currString.length > longest.length) {
         longest = currString;
@@ -93,7 +93,6 @@ function longestPalindromicStrSol2(str) {
       if (length > resLength) {
         resLength = length;
         res = str.substring(left, right + 1); // don't use substr
-        console.log(res);
       }
       left--;
       right++;
@@ -107,7 +106,6 @@ function longestPalindromicStrSol2(str) {
       if (length > resLength) {
         resLength = length;
         res = str.substring(left, right + 1);
-        console.log(res);
       }
       left--;
       right++;
@@ -116,4 +114,4 @@ function longestPalindromicStrSol2(str) {
   return res.length > 0 ? res : str[0];
 }
 
-console.log(longestPalindromicStrSol2("babad"));
+console.log(longestPalindromicStrSol2("add"));

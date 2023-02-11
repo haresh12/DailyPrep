@@ -16,6 +16,7 @@
    The time complexity of this approach is O(n), where n is the total number of elements in both arrays. This is because the algorithm must compare and merge every element in both arrays, which takes linear time.
    The space complexity is also O(n), as a new array is created to store the merged elements. This new array must have a size equal to the sum of the sizes of both input arrays.
 */
+// https://www.youtube.com/watch?v=NTop3VTjmxk&t=34s  (More optimized solution but not done yet)
 function mergeTwoSortedArray(arr1, arr2) {
   let i = 0;
   let j = 0;
