@@ -81,17 +81,21 @@ Return res.
 
 */
 function mergeIntervals(intervals) {
-  if (!intervals.length) return [];
+  if (intervals.length <= 1) return intervals;
 
-  intervals.sort((a, b) => a[0] - b[0]); // LEARN THIS IS HOW WE CAN SORT
+  // Sorting interval by start time
+  intervals = intervals.sort((a, b) => a[0] - b[0]);
 
-  let res = [intervals[0]];
+  let res = []; // this is where we will store the result
+  res[0] = intervals[0]; // initially we are storing first interval to res and will do changes in it inside loop
 
   for (let i = 1; i < intervals.length; i++) {
     let currentInterval = intervals[i];
     let lastMergedInterval = res[res.length - 1];
 
+    // This is where the actual magic happens
     if (currentInterval[0] <= lastMergedInterval[1]) {
+      // This condition is not rocket science just do dry run and you will get it
       lastMergedInterval[1] = Math.max(
         lastMergedInterval[1],
         currentInterval[1]
@@ -100,9 +104,9 @@ function mergeIntervals(intervals) {
       res.push(currentInterval);
     }
   }
-
   return res;
 }
+
 console.log(
   mergeIntervals([
     [1, 4],
