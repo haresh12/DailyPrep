@@ -48,17 +48,26 @@ making it an efficient solution for finding the total number of subarrays in an 
 function subarraySum(nums, k) {
   let count = 0;
   let sum = 0;
-  let map = new Map();
-  map.set(0, 1);
+  let map = {};
+  map[0] = 1; // why this because if we have sum 3 and k is also 3 then 3 - 3 = 0 but we never had 0 in map try this [3],3 input
 
   for (let i = 0; i < nums.length; i++) {
+    // as soon as you come inside loop first just add current value to some
     sum += nums[i];
-    if (map.has(sum - k)) {
-      count += map.get(sum - k);
+    //step two would be check if sum - k is this value exist or not in map
+    // example k is 5 current sum is 3 then if we have one 2 in map then this is subarray
+    if (sum - k in map) {
+      // here means yes it is in map
+      count += map[sum - k]; // whatever value we have there just add that into count
     }
-    map.set(sum, (map.get(sum) || 0) + 1);
+    // Now common steps if values in not in the map then simply store it
+    if (map[sum]) {
+      map[sum] = map[sum] + 1; // means whatever frequency it has add one more into that because ek or bar aaya he
+    } else {
+      // here it comes means this sum not is map yet so set with frequency 1
+      map[sum] = 1;
+    }
   }
-
   return count;
 }
-console.log(subarraySum([1, 2, 3], 3));
+console.log(subarraySum([1, 2, 1, 2, 1], 3));

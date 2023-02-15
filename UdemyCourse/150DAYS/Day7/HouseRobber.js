@@ -18,39 +18,37 @@ Total amount you can rob = 2 + 9 + 1 = 12.
 */
 
 // FIRST DYNAMIC PROGRAMING PROBLEM
-function robberyDay(nums, sum, index, map) {
-  if (index < 0) {
-    return 0;
+// Without dp works fine but TLE error in leetcode
+function robber(arr, sum, index) {
+  if (index >= arr.length) {
+    return sum;
   }
 
-  if (map[index]) {
-    return map[index];
-  }
+  let rob = robber(arr, sum + arr[index], index + 2);
+  let noRob = robber(arr, sum, index + 1);
 
-  const rob = robberyDay(nums, sum + nums[index], index - 2, map);
-  const notRob = robberyDay(nums, sum, index - 1, map);
-  const maxRob = Math.max(rob, notRob);
-  map[index] = maxRob;
-  return maxRob;
+  return Math.max(rob, noRob);
 }
-function rob(nums) {
-  const memo = new Map();
 
-  function helper(i) {
+console.log(robber([2, 7, 9, 3, 1], 0, 0));
+
+// LETS TRY WITH DP
+function robberDP(arr) {
+  const memo = {};
+
+  function dp(i) {
     if (i < 0) {
       return 0;
     }
-    if (memo.has(i)) {
-      return memo.get(i);
+    if (memo[i]) {
+      return memo[i];
     }
-
-    const result = Math.max(helper(i - 2) + nums[i], helper(i - 1));
-
-    memo.set(i, result);
-    return result;
+    const robCurrent = arr[i] + dp(i - 2);
+    const skipCurrent = dp(i - 1);
+    memo[i] = Math.max(robCurrent, skipCurrent);
+    return memo[i];
   }
 
-  return helper(nums.length - 1);
+  return dp(arr.length - 1);
 }
-console.log(robberyDay([1, 2, 3, 1], 0, [1, 2, 1, 1].length - 1, {}));
-// console.log(robberyDay([1, 2, 3, 1]));
+console.log(robberDP([1, 2, 1, 1], 0, 0, {}));
