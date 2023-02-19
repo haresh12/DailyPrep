@@ -92,8 +92,15 @@ function coinChangeOp(coins, amount, memo = {}) {
 
   for (let coin of coins) {
     if (amount - coin >= 0) {
-      let numCoins = 1 + coinChangeOp(coins, amount - coin, memo);
-      if (numCoins < minCoins) {
+      let numCoins = 0;
+      let res = coinChangeOp(coins, amount - coin, memo);
+      if (res >= 0) {
+        // This is needed because if we get ans like negative on the we really don't want to decrease the result
+        numCoins = res + 1;
+      }
+
+      // Don't make changes in min coins when numCoins value is 0 because 0 number of coins in not really useful
+      if (numCoins !== 0 && numCoins < minCoins) {
         minCoins = numCoins;
       }
     }
@@ -103,4 +110,4 @@ function coinChangeOp(coins, amount, memo = {}) {
   return memo[amount];
 }
 
-console.log(coinChangeOp([2], 3));
+console.log(coinChangeOp([1], 0));
