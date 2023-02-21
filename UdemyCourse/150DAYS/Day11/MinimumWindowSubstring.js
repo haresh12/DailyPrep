@@ -1,8 +1,7 @@
 /*
     Minimum Window Substring : 
     
-    Given two strings s and t of lengths m and n respectively, return the minimum window 
-substring
+ Given two strings s and t of lengths m and n respectively, return the minimum window substring
  of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
 
 The testcases will be generated such that the answer is unique.
@@ -81,7 +80,6 @@ function minimumWindowSubstring(s, t) {
       : -1; // understood why we have -1 here because are are not really needed in targetFreq (Line 97 see and then understand this)
 
     // If we have found a valid window, move the left pointer and try to find a smaller window
-    // ALL OTHER PART IS SIMPLE EXCEPT THIS WHILE
     while (counter === 0) {
       const charLeft = s[left];
 
@@ -92,6 +90,7 @@ function minimumWindowSubstring(s, t) {
       }
 
       // Increase the frequency of the character in the target string
+      // ENTIRE ALGO IS SIMPLE IF WE UNDERSTAND SLIDING WINDOW BUT LINE 94 AND 97 UNDERSTAND THIS WELL LIKE WHY WE ARE DOING WHAT WE ARE DOING
       targetFreq[charLeft]++;
 
       // If the current character is a desired character in the target string, increase the counter
