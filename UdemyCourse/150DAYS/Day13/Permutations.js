@@ -62,7 +62,7 @@ function findAllPermutationBR(overAllAns, currAns, freqMap, input) {
 
 let overAllAns = [];
 let nums = [1, 2, 3];
-findAllPermutationBR(overAllAns, [], {}, nums);
+// findAllPermutationBR(overAllAns, [], {}, nums);
 console.log(overAllAns);
 
 // FOR NOW WILL GO WITH FIRST SOLUTION
@@ -85,4 +85,32 @@ function findAllPermutationOp(nums) {
   }
   return result;
 }
-console.log(findAllPermutationOp(nums));
+// console.log(findAllPermutationOp(nums));
+
+// Next day done practice
+function generatePermutation2(ans, curr, freq, input) {
+  if (curr.length === input.length) {
+    console.log(ans);
+    ans.push([...curr]);
+    return;
+  }
+
+  for (let i = 0; i < input.length; i++) {
+    let val = input[i];
+    if (!freq[val]) {
+      curr.push(val);
+      freq[val] = true;
+      generatePermutation2(ans, curr, freq, input);
+      curr.pop();
+      freq[val] = false;
+    }
+  }
+}
+
+let ans = [];
+let curr = [];
+let freq = {};
+let input = [1, 2, 3];
+
+console.log(generatePermutation2(ans, curr, freq, input));
+console.log(ans);

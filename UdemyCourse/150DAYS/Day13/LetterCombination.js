@@ -47,10 +47,10 @@ function generateLetterCombinations(str, res, isFirstTime) {
     }
   }
   temp = res.length > temp.length ? res : temp;
-  return getLetterCombination(rest, temp, false);
+  return generateLetterCombinations(rest, temp, false);
 }
 
-console.log(getLetterCombination("23", [], true));
+// console.log(generateLetterCombinations("23", [], true));
 
 // REALLY BETTER VERSION
 
@@ -97,6 +97,7 @@ function generateLetterCombinations(digits) {
 
   const res = [];
 
+  // To understand this approach just do the first level of work and rest will be take care recursion
   function backtrack(combination, nextDigits) {
     if (nextDigits.length === 0) {
       res.push(combination);
@@ -114,3 +115,30 @@ function generateLetterCombinations(digits) {
   backtrack("", digits);
   return res;
 }
+
+// Next day done practice
+function generateLetterCombinations2(str, res, isFirstTime) {
+  if (str.length === 0) {
+    return res;
+  }
+
+  let first = str[0];
+  let rest = str.substring(1);
+  let temp = [];
+  let val = freq[first];
+  for (let i = 0; i < val.length; i++) {
+    if (isFirstTime) {
+      res.push(val[i]);
+    } else {
+      for (let j = 0; j < res.length; j++) {
+        temp.push(`${val[i]}${res[j]}`);
+      }
+    }
+  }
+
+  res = isFirstTime ? res : temp;
+
+  return generateLetterCombinations2(rest, res, false);
+}
+
+console.log(generateLetterCombinations2("23", [], true));
