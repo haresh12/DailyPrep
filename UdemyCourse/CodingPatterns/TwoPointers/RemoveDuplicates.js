@@ -53,6 +53,24 @@ function removeDuplicate(nums) {
 
 console.log(removeDuplicate([2, 3, 3, 3, 6, 9, 9]));
 
+/*
+  THIS ONE IS SIMPLE AND EASY TO UNDERSTAND BUT BOTH WAY ARE FINE
+*/
+function removeAllFront(arr) {
+  let left = 0;
+  let right = 1;
+
+  while (right < arr.length) {
+    if (arr[left] === arr[right]) {
+      arr.splice(right, 1);
+    } else {
+      left++;
+      right++;
+    }
+  }
+  return arr;
+}
+
 // Similar Questions
 
 /*
@@ -99,3 +117,5 @@ function remove_element(arr, key) {
   }
   return nextElement;
 }
+
+console.log(removeAllFront([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]));
