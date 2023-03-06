@@ -38,7 +38,6 @@
    The above algorithm’s time complexity will be O(N) as we are iterating the input array only once.
    The above algorithm’s space complexity will also be O(N); this space will be used for the output array.
 
-
 */
 function squaringSortedArray(nums) {
   for (let i = 0; i < nums.length; i++) {

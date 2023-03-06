@@ -29,61 +29,57 @@
 
    YE SAB TAB TAK KRO JAB TAB I < K NHI BUT MERE BHAI I <= K NA HO JAYE TAB TAK
 */
-function sort012(arr) {
-  if (arr.length === 0) return arr;
 
+function sort01(arr) {
+  let i = 0;
+  let j = 0;
+
+  while (i < arr.length) {
+    if (arr[i] === 0) {
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+      i++;
+      j++;
+    } else {
+      i++;
+    }
+  }
+  return arr;
+}
+
+console.log(sort01([1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1]));
+
+/*
+  The time complexity of the above algorithm will be O(N) as we are iterating the input array only once.
+*/
+function sort012(arr) {
   let i = 0;
   let j = 0;
   let k = arr.length - 1;
 
   while (i <= k) {
-    if (arr[i] === 0) {
-      // swap i and j and increment both
-      let temp = arr[j];
-      arr[j] = arr[i];
-      arr[i] = temp;
+    // i ki value 1 hai to sirf i++
+    if (arr[i] === 1) {
+      i++;
+    } else if (arr[i] === 0) {
+      // i ki value 0 hai to i and j ko swap and then increase value of i and j both
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
       i++;
       j++;
-    } else if (arr[i] === 1) {
-      i++;
     } else {
-      // 2 ke case me k or i ko swap then k badao
-      let temp = arr[k];
-      arr[k] = arr[i];
-      arr[i] = temp;
+      // arr[i] ki value 2 hai to i and k ko swap kro and k--;
+      let temp = arr[i];
+      arr[i] = arr[k];
+      arr[k] = temp;
       k--;
     }
   }
   return arr;
 }
 
-console.log(sort01([1, 0, 1, 1, 1, 0, 1, 1, 0, 1]));
-
-// WHAT IF WE HAVE ONLY 0 AND 1S THEN MUCH SIMPLE
-
-/*
-    AGAR 0 HAI TO SWAP I AND J THEN DONO  I AND J KO INCREMENT
-    AGAR 1 HAI TO KUSH NHI BAS I++
-*/
-
-function sort01(arr) {
-  if (arr.length === 0) {
-    return arr;
-  }
-
-  let i = 0;
-  let j = 0;
-
-  while (i < arr.length) {
-    if (arr[i] === 1) {
-      i++;
-    } else {
-      let temp = arr[j];
-      arr[j] = arr[i];
-      arr[i] = temp;
-      i++;
-      j++;
-    }
-  }
-  return arr;
-}
+console.log(
+  sort012([1, 0, 1, 0, 1, 2, 0, 2, 2, 0, 1, 1, 0, 1, 2, 1, 1, 1, 0, 0, 1, 1])
+);
