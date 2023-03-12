@@ -24,7 +24,7 @@
   the correct answer will be [1, 1, 2] as it has a sum '4' which is less than the sum of the other triplet which is '6'.
  This is because of the following requirement: 'If there are more than one such triplet, return the sum of the triplet with the smallest sum.'
 */
-
+//https://www.youtube.com/watch?v=anuarmFjTGU&t=38s
 function smallestOp(arr, target) {
   // First thing first sort array
   arr = arr.sort((a, b) => a - b);
@@ -39,7 +39,6 @@ function smallestOp(arr, target) {
 function targetSum(arr, current, i, smallest, target) {
   let left = arr[i + 1]; // BHAI arr[i] + 1 or arr[i+1] me bhut jyada difference he
   let right = arr[arr.length - 1];
-  console.log("in", arr[i]);
 
   while (left < right) {
     let targetDiff = target - current - arr[left] - arr[right];
@@ -51,6 +50,8 @@ function targetSum(arr, current, i, smallest, target) {
     // Now this condition is tricky understand here why we are using Math.abs() and understand why we have multiple conditions
     // You need smallest diff so every time below condition gets true then update the smallest
 
+    // WHY Math.abs See 10 - 8 = 2 and 10 - 11 = -1 but still bhai closest to 11 hua na because if target 10 hota to 10
+    // or 11 ke beach me difference 1 hai where as 10 or 8 ke  beach me difference 2 hai so this way answer should be 11
     if (
       Math.abs(targetDiff) < Math.abs(smallest) ||
       (Math.abs(targetDiff) === Math.abs(smallest) && targetDiff > smallest)

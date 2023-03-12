@@ -68,7 +68,7 @@ function twoSum(nums, index, remaining) {
 /*
    HERE IMPORTANT PART IS WE NEED UNIQUE PAIRS SO WE NEED TO MAKE SURE WE  IGNORE THE DUPLICATE.
    ALSO SEE YOU HAVE TO SORT ARRAY FIRST THEN ARRAY BECOME SORTED 
-   NOW WHENEVER ARRAY BECOME SORTED THEN PLEASE ATLEAST ONE TIME THINK ABOUT BINARY SEARCH 
+   NOW WHENEVER ARRAY BECOME SORTED THEN PLEASE ATLEAST ONE TIME THINK ABOUT BINARY SEARCH  (YE BINARY SEARCH  NHI HE MERE BHAI TU SOCH)
 */
 function tripletOp(nums) {
   if (nums.length < 3) return [];
@@ -82,7 +82,6 @@ function tripletOp(nums) {
   }
   return res;
 }
-
 function targetSum(nums, target, index, res) {
   let left = index;
   let right = nums.length - 1;

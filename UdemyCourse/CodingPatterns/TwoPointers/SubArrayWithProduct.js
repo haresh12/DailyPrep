@@ -35,9 +35,9 @@ function subarraysBR(arr, target) {
   return count;
 }
 
-console.log(
-  subArrayWithProduct([10, 9, 10, 4, 3, 8, 3, 3, 6, 2, 10, 10, 9, 3], 19)
-);
+// console.log(
+//   subArrayWithProduct([10, 9, 10, 4, 3, 8, 3, 3, 6, 2, 10, 10, 9, 3], 19)
+// );
 
 /*
    This approach has time complexity (N^3) and the solution we have in design guru is also same time complexity so wil sticky with
@@ -65,3 +65,64 @@ function subArrayWithProduct(arr, target) {
 }
 
 // LETS LEARN OPTIMAL SOLUTION
+
+function zeroOne(arr) {
+  if (!arr || arr.length === 0) return;
+  let i = 0;
+  let j = 0;
+  while (i < arr.length) {
+    if (arr[i] === 1) {
+      i++;
+    } else {
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+      i++;
+      j++;
+    }
+  }
+  return arr;
+}
+
+console.log(
+  "ZERO-ONE",
+  zeroOne([
+    1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1,
+    0,
+  ])
+);
+
+function zeroOneTwo(arr) {
+  if (!arr || arr.length === 0) return;
+
+  let i = 0;
+  let j = 0;
+  let k = arr.length - 1;
+
+  while (i < k) {
+    if (arr[i] === 0) {
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+      i++;
+      j++;
+    } else if (arr[i] === 1) {
+      i++;
+    } else {
+      // For value 2
+      let temp = arr[i];
+      arr[i] = arr[k];
+      arr[k] = temp;
+      k--; // Means last me to 2 transfer kr diya
+    }
+  }
+  return arr;
+}
+
+console.log(
+  "ZERO-ONE-TWO",
+  zeroOneTwo([
+    1, 0, 1, 0, 1, 1, 2, 2, 2, 0, 1, 1, 0, 0, 0, 1, 0, 1, 2, 1, 0, 0, 0, 2, 2,
+    2, 2, 1, 1, 0, 0, 2, 2, 2, 0, 1, 0,
+  ])
+);

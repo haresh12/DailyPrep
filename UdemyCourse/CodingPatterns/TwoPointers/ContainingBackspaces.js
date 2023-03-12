@@ -67,3 +67,5 @@ function helper(str) {
   str = str.replaceAll("_", "");
   return str;
 }
+
+// USE TWO POINTER TO REMOVE SPACE DEPENDENCY

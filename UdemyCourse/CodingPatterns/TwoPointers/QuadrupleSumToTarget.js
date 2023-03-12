@@ -29,7 +29,7 @@
 function quadruple(arr, target) {
   if (arr.length < 4) return []; // Return blank rather then arr it self it make more sense
   let quadrupleArr = [];
-  arr = arr.sort((a, b) => a - b);
+  arr = arr.sort((a, b) => a - b); // MAKE SURE YOU DON'T FORGET TO SORT THE ARRAY FIRST IN ANY TRIPLET OR QUADRUPLE QUESTIONS
   for (let i = 0; i < arr.length - 3; i++) {
     if (i > 0 && arr[i - 1] === arr[i]) continue;
     let current = arr[i];

@@ -119,3 +119,20 @@ function remove_element(arr, key) {
 }
 
 console.log(removeAllFront([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]));
+
+// DONE BY SELF APPROACH AND FINAL ONE
+function removeDup(arr) {
+  let prevIndex = 0;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] !== arr[prevIndex]) {
+      prevIndex++;
+      arr[prevIndex] = arr[i];
+    }
+  }
+  return prevIndex + 1; // to convert index to length
+}
+
+console.log(
+  "REMOVEDUP",
+  removeDup([1, 1, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 11])
+);
